@@ -1,16 +1,19 @@
+const { ConnectionStates } = require("mongoose");
 const multer = require("multer");
 const path = require("path");
 //이미지 업로드
-const storage = multer.diskStorage({
+const _storage = multer.diskStorage({
     destination: (req, res, cb) => {
          cb(null, path.join("./files/"));
     },
     filename: (req, file, cb) => {
-        cb(null, new Date().toISOString() + file.originalname);
+        cb(null, new Date().toISOString() +'-'+file.originalname );
     }
 });
 // 파일검사
 const fileFilter = (req, file, cb) => {
+    
+
     if (file.mimetype.startsWith('image')) {
         cb(null, true);
     } else {
@@ -18,9 +21,10 @@ const fileFilter = (req, file, cb) => {
     }
 };
 exports.upload = multer({
-    storage: storage,
+    
+    storage: _storage,    
+    fileFilter: fileFilter,
     limits: {
         fileSize: 1024 * 1024 * 6
     },
-    fileFilter: fileFilter
 });

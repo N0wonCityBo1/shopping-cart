@@ -4,12 +4,12 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const app = express();
 const path = require('path');
-const envDir = path.join(__dirname,'./.env')
-require("dotenv").config({path:envDir});
+const envDir = path.join(__dirname, './.env')
+require("dotenv").config({ path: envDir });
 
 require("./config/mongoose.js")(app);
 app.use('/files', express.static("files"));
-require('./app/routeHandler')(app)
+require('./routerHandler')(app)
 
 
 app.use(morgan('dev'));

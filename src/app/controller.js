@@ -1,6 +1,7 @@
 const productRepository = require('./repository')
 exports.createProduct = async (req, res) => {
-    try {
+    console.log(req.file)
+try {
         let payload = {
             name: req.body.name,
             price: req.body.price,
@@ -19,7 +20,8 @@ exports.createProduct = async (req, res) => {
             error: err,
             status: false,
         })
-    }
+    }            
+
 }
 exports.getProducts = async (req, res) => {
     try {
