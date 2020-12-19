@@ -4,10 +4,10 @@ const path = require("path");
 //이미지 업로드
 const _storage = multer.diskStorage({
     destination: (req, res, cb) => {
-         cb(null, path.join("./files/"));
+         cb(null, "files/");
     },
     filename: (req, file, cb) => {
-        cb(null, new Date().toISOString() +'-'+file.originalname );
+        cb(null, file.originalname );
     }
 });
 // 파일검사
@@ -23,8 +23,9 @@ const fileFilter = (req, file, cb) => {
 exports.upload = multer({
     
     storage: _storage,    
-    fileFilter: fileFilter,
+  
     limits: {
         fileSize: 1024 * 1024 * 6
     },
-});
+}).single('image');
+
