@@ -1,14 +1,10 @@
 const mongoose = require("mongoose");
-
-
-const link =process.env.DB_HOST;
-
 module.exports = app => {
-    mongoose.connect(link, {
+    mongoose.connect('mongodb+srv://jajjkon7:k4924031@cluster0.fev6m.mongodb.net/shopping?retryWrites=true&w=majority', {
         useUnifiedTopology: true,
         useNewUrlParser: true,
         useFindAndModify: false
-    }).then(res => console.log("conneceted")).catch(err => console.log(err))
+    }).then(res => console.log("DB연결됨")).catch(err => console.log(err))
     mongoose.Promise = global.Promise;
     process.on("SIGINT", cleanup);
     process.on("SIGTERM", cleanup);

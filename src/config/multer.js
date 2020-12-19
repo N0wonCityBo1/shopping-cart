@@ -17,7 +17,7 @@ const fileFilter = (req, file, cb) => {
     if (file.mimetype.startsWith('image')) {
         cb(null, true);
     } else {
-        cb(new Error('Not an image! Please upload an image.', 400), false);
+        cb(new Error('이미지가 아닙니다!', 400), false);
     }
 };
 exports.upload = multer({
