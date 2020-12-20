@@ -1,3 +1,4 @@
+const { find } = require("./model");
 const Cart = require("./model");
 exports.cart = async () => {
     const carts = await Cart.find().populate({
@@ -9,9 +10,10 @@ exports.cart = async () => {
 exports.addItem = async payload => {
     const newItem = await Cart.create(payload);
     return newItem
-}
+};
 
-exports.removecart = async id => {
-    const product = await Cart.findByIdAndRemove(id);
-    return product
-}
+
+// exports.reduceItem = async id => {
+//     const product = await Cart.update({ items:{$elemMatch:{ _id : id}}},{$set : {'items.$."quantity"': "0"}});
+//     return product
+// }

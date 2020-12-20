@@ -36,7 +36,7 @@ exports.addItemToCart = async (req, res) => {
                 cart.subTotal = cart.items.map(item => item.total).reduce((acc, next) => acc + next);
             }
             //----수량이 0초과일경우에만 카트에 담음 ----
-            else if (quantity > 0) {
+            else if (quantity !== 0) {
                 cart.items.push({
                     productId: productId,
                     quantity: quantity,
@@ -82,9 +82,27 @@ exports.addItemToCart = async (req, res) => {
         })
     }
 }
-exports.removeItemToCart = async (req,res) => {
-    
-}
+
+// exports.changequan = async(req,res) => {
+//     try {
+//         let re = req.params.id
+
+//         let cart = await cartRepository.removeItem(re)
+//        res.status(200).json({
+//            status :true,
+//            date : re,
+//        })
+       
+//     } catch (err) {
+        
+//         res.status(500).json({
+//             status : false,
+//             err: err
+//         })
+//     }
+
+// }
+
 exports.getCart = async (req, res) => {
     try {
         let cart = await cartRepository.cart()

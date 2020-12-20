@@ -8,6 +8,7 @@ const productSchema = mongoose.Schema({
     type: String,
     required: [true, "제품가격을 입력하세요"],
   },
+  description: {type: String, required: true},
   image: {
     type: String,
     required: true,
